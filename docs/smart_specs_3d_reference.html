@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Smart Specs — 3D Modeling Reference</title>
+<style>
+  @page { margin: 15mm; size: A4; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; color: #1a1a1a; line-height: 1.5; font-size: 11pt; }
+  h1 { text-align: center; color: #0d47a1; border-bottom: 3px solid #0d47a1; padding-bottom: 8px; font-size: 20pt; }
+  h2 { color: #1565c0; border-bottom: 2px solid #90caf9; padding-bottom: 4px; margin-top: 20px; font-size: 14pt; }
+  h3 { color: #1976d2; margin-bottom: 5px; font-size: 12pt; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 10pt; }
+  th { background: #1565c0; color: white; padding: 8px 10px; text-align: left; }
+  td { border: 1px solid #ccc; padding: 6px 10px; vertical-align: top; }
+  tr:nth-child(even) { background: #f5f5f5; }
+  .layout-box { background: #263238; color: #e0e0e0; padding: 15px; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 10pt; margin: 10px 0; white-space: pre; overflow-x: auto; }
+  .note { background: #e3f2fd; border-left: 4px solid #1565c0; padding: 8px 12px; margin: 10px 0; font-size: 10pt; }
+  .warn { background: #fff3e0; border-left: 4px solid #ef6c00; padding: 8px 12px; margin: 10px 0; font-size: 10pt; }
+  .section { page-break-inside: avoid; }
+  .dim { color: #d32f2f; font-weight: bold; }
+  .loc { color: #2e7d32; font-weight: bold; }
+  ul { margin: 5px 0; padding-left: 20px; }
+  li { margin: 2px 0; }
+  .header-info { text-align: center; color: #666; margin-bottom: 20px; }
+</style>
+</head>
+<body>
+
+<h1>🕶️ Smart Specs — 3D Modeling Reference</h1>
+<p class="header-info">Component Dimensions, Placement & Layout Guide<br>
+<em>For: 3D Printable Smart Glasses Frame (PLA/PETG)</em></p>
+
+<!-- ============================================ -->
+<h2>1. Project Overview</h2>
+<p>A wearable smart glasses frame for a blind navigation aid. The glasses house a camera (center), an ESP32 microcontroller (right arm), speakers (both arms near ears), battery &amp; power management (left arm). The frame must look like sporty sunglasses — not a bulky prototype.</p>
+
+<div class="note">
+<strong>Design Style:</strong> Wraparound sport sunglasses, matte black, 3D printed.<br>
+<strong>Lens openings:</strong> Present but open (no actual lenses).<br>
+<strong>Target weight:</strong> ~60-70g fully loaded with electronics.
+</div>
+
+<!-- ============================================ -->
+<h2>2. Component List &amp; Dimensions</h2>
+
+<table>
+<tr>
+  <th>Component</th>
+  <th>Dimensions (L × W × H)</th>
+  <th>Location</th>
+  <th>Mounting</th>
+</tr>
+<tr>
+  <td><strong>ESP32-CAM Board</strong><br>(ESP32 S-CAM MB)</td>
+  <td class="dim">40mm × 27mm × 10mm</td>
+  <td class="loc">Right arm, near hinge</td>
+  <td>Open-top snap-fit cradle. No lid. Side rails hold board, removable by hand.</td>
+</tr>
+<tr>
+  <td><strong>OV2640 Camera</strong><br>(24-pin, 75mm cable)</td>
+  <td class="dim">Sensor: 8mm × 8mm × 5mm<br>Cable: 75mm × 13mm × 0.5mm</td>
+  <td class="loc">Center top of bridge</td>
+  <td>Pocket in bridge, lens flush with front surface. Cable routes along top of right lens rim.</td>
+</tr>
+<tr>
+  <td><strong>Speaker × 2</strong><br>(Mini Oval 8Ω 1W)</td>
+  <td class="dim">24mm × 15mm × 4mm each</td>
+  <td class="loc">Both arms, near ear tips (last 30mm)</td>
+  <td>Press-fit cavity. Sound holes (2-3 × 1.5mm) face toward ear.</td>
+</tr>
+<tr>
+  <td><strong>PAM8403</strong><br>(Stereo amplifier)</td>
+  <td class="dim">21mm × 18mm × 5mm</td>
+  <td class="loc">Right arm, after ESP32</td>
+  <td>Glue-in pocket. Wires run to both speakers along arms.</td>
+</tr>
+<tr>
+  <td><strong>420mAh LiPo Battery</strong><br>(602040P)</td>
+  <td class="dim">42mm × 20mm × 6mm</td>
+  <td class="loc">Left arm, middle section</td>
+  <td>Snap-fit battery bay, 1.2mm walls. Bare wire leads exit one end.</td>
+</tr>
+<tr>
+  <td><strong>TP4056 Charger</strong><br>(USB-C)</td>
+  <td class="dim">26mm × 17mm × 4mm</td>
+  <td class="loc">Left arm, near hinge</td>
+  <td>Snap-in. USB-C port flush with bottom/outside surface.</td>
+</tr>
+<tr>
+  <td><strong>MT3608 Boost</strong><br>(3.7V → 5V)</td>
+  <td class="dim">36mm × 17mm × 14mm</td>
+  <td class="loc">Left arm, between TP4056 and battery</td>
+  <td>Snap-fit or glue-in. Adjustment screw must be accessible (hole or open-top).</td>
+</tr>
+</table>
+
+<!-- ============================================ -->
+<h2>3. Frame Dimensions</h2>
+
+<div class="section">
+<h3>Front Frame</h3>
+<table>
+<tr><th>Parameter</th><th>Value</th></tr>
+<tr><td>Total width (face)</td><td class="dim">140mm</td></tr>
+<tr><td>Each lens opening</td><td class="dim">60mm wide × 35mm tall</td></tr>
+<tr><td>Bridge width (nose)</td><td class="dim">18mm</td></tr>
+<tr><td>Camera pocket at bridge top</td><td class="dim">8mm × 8mm × 5mm deep</td></tr>
+<tr><td>Top rail thickness</td><td class="dim">4mm</td></tr>
+<tr><td>Side/bottom thickness</td><td class="dim">2.5mm</td></tr>
+<tr><td>Nose pads</td><td>Integrated, angled 15° inward</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h3>Temple Arms (Side Arms)</h3>
+<table>
+<tr><th>Parameter</th><th>Value</th></tr>
+<tr><td>Total length (hinge to ear tip)</td><td class="dim">140mm each</td></tr>
+<tr><td>Cross-section near hinge</td><td class="dim">12mm wide × 8mm tall (for electronics)</td></tr>
+<tr><td>Cross-section near ear</td><td class="dim">10mm wide × 6mm tall (for speaker)</td></tr>
+<tr><td>Taper</td><td>Gradual from 12mm → 10mm</td></tr>
+<tr><td>Ear hook curve</td><td>Slight downward curve, last 40mm</td></tr>
+<tr><td>Wall thickness</td><td class="dim">1.2–1.5mm</td></tr>
+</table>
+</div>
+
+<!-- ============================================ -->
+<h2>4. Layout Maps</h2>
+
+<h3>Top View — Component Placement</h3>
+<div class="layout-box">LEFT ARM                           FRONT FRAME                      RIGHT ARM
+
+[TP4056]─[MT3608]─[Battery]─[Speaker]  ────[Camera]────  [ESP32]─[PAM8403]─[Speaker]
+  ↑USB-C                             center bridge              open-top cradle
+  (faces down)                         (top center)
+</div>
+
+<h3>Right Arm — Side View (Exploded)</h3>
+<div class="layout-box">Hinge ──→ ESP32 (open top, no lid) ──→ PAM8403 ──→ Speaker ──→ Ear tip
+          ├── 40mm along arm ──┤     ├ 21mm ┤   ├ 24mm ┤
+</div>
+
+<h3>Left Arm — Side View (Exploded)</h3>
+<div class="layout-box">Hinge ──→ TP4056 ──→ MT3608 ──→ Battery ──→ Speaker ──→ Ear tip
+          ├ 26mm ┤   ├ 36mm ┤   ├ 42mm ┤   ├ 24mm ┤
+          USB-C↓     screw↑
+</div>
+
+<div class="warn">
+<strong>⚠️ Left arm total component length:</strong> 26 + 36 + 42 + 24 = <strong>128mm</strong> (fits in 140mm arm with 12mm gaps)<br>
+<strong>⚠️ Right arm total component length:</strong> 40 + 21 + 24 = <strong>85mm</strong> (fits easily, 55mm free space)
+</div>
+
+<!-- ============================================ -->
+<h2>5. Cable &amp; Wire Channels</h2>
+
+<table>
+<tr><th>Channel</th><th>Dimensions</th><th>Route</th></tr>
+<tr>
+  <td><strong>FPC Camera Cable</strong></td>
+  <td class="dim">14mm wide × 1mm deep groove</td>
+  <td>Camera pocket (center bridge) → along top of right lens rim → into right arm → ESP32 ZIF connector</td>
+</tr>
+<tr>
+  <td><strong>Wire Channel (both arms)</strong></td>
+  <td class="dim">3mm × 3mm internal</td>
+  <td>Inside each arm for power + audio wires between components</td>
+</tr>
+<tr>
+  <td><strong>Cross-Bridge Channel</strong></td>
+  <td class="dim">3mm × 3mm hidden</td>
+  <td>Behind/above nose bridge, connecting left arm wires to right arm (power from battery → ESP32, audio from PAM8403 → left speaker)</td>
+</tr>
+</table>
+
+<!-- ============================================ -->
+<h2>6. Special Design Notes</h2>
+
+<table>
+<tr><th>Feature</th><th>Details</th></tr>
+<tr><td>ESP32 cradle</td><td>Open top — NO lid. Side snap rails hold the board. User must be able to lift it out and place back by hand.</td></tr>
+<tr><td>USB-C port (TP4056)</td><td>Must be flush with bottom or outer surface of left arm near hinge for easy charging access.</td></tr>
+<tr><td>MT3608 screw access</td><td>Small hole (3mm) in enclosure pointing upward, OR open-top design, so the voltage adjustment screw is reachable with a small screwdriver.</td></tr>
+<tr><td>Speaker sound holes</td><td>2-3 holes, 1.5mm diameter each, facing inward toward the ear canal.</td></tr>
+<tr><td>Ventilation</td><td>3-4 small holes (1mm) near ESP32 area for heat dissipation.</td></tr>
+<tr><td>Hinge</td><td>Simple integrated friction hinge (print-in-place) or pin hinge.</td></tr>
+<tr><td>Nose pads</td><td>Integrated into frame, angled 15° inward.</td></tr>
+</table>
+
+<!-- ============================================ -->
+<h2>7. Signal &amp; Power Flow</h2>
+
+<div class="layout-box">USB-C (charging)
+   ↓
+TP4056 (left arm) → charges → LiPo Battery (left arm)
+                                    ↓ 3.7V
+                               MT3608 (left arm) → boosts to 5V
+                                    ↓ 5V wire crosses bridge
+                               ESP32 (right arm) ← 5V power
+                                    ↓ captures image via OV2640 camera
+                                    ↓ sends via WiFi to Raspberry Pi (in pocket)
+                                    ↓ receives detection result text
+                                    ↓ DAC audio signal
+                               PAM8403 (right arm)
+                                 ↙        ↘
+                          Left Speaker    Right Speaker
+                          (left ear)      (right ear)
+</div>
+
+<div class="note">
+<strong>Wire count crossing the bridge:</strong><br>
+• 2 wires: 5V + GND (from MT3608 on left → ESP32 on right)<br>
+• 2 wires: Left speaker audio + GND (from PAM8403 on right → speaker on left)<br>
+<strong>Total: 4 thin wires (26-28 AWG) through the cross-bridge channel.</strong>
+</div>
+
+<!-- ============================================ -->
+<div style="page-break-before: always;"></div>
+<h2>8. Component Purchase Links</h2>
+
+<table>
+<tr>
+  <th>#</th>
+  <th>Component</th>
+  <th>Price</th>
+  <th>Link</th>
+</tr>
+<tr>
+  <td>1</td>
+  <td><strong>ESP32 S-CAM MB</strong> WiFi + Bluetooth Board with OV3660 3MP Camera</td>
+  <td>₹699</td>
+  <td><a href="https://probots.co.in/esp32-cam-mb-wifi-bluetooth-development-board-with-ov3660-3mp-camera-module.html">probots.co.in</a></td>
+</tr>
+<tr>
+  <td>2</td>
+  <td><strong>OV2640 Camera Module</strong> 24-pin 75mm (external camera for center placement)</td>
+  <td>₹709</td>
+  <td><a href="https://probots.co.in/ov2640-68-degree-2mp-camera-module-24pin-75mm.html">probots.co.in</a></td>
+</tr>
+<tr>
+  <td>3</td>
+  <td><strong>Mini Oval Speaker</strong> 8Ω 1W (24×15mm) — <em>buy 2</em></td>
+  <td>₹59 × 2</td>
+  <td><a href="https://probots.co.in/8-ohm-1w-2415-mm-oval-mini-audio-speaker.html">probots.co.in</a></td>
+</tr>
+<tr>
+  <td>4</td>
+  <td><strong>PAM8403</strong> Stereo 3W+3W Class-D Amplifier</td>
+  <td>₹59</td>
+  <td><a href="https://probots.co.in/pam8403-5v-two-channel-stereo-mini-class-d-3w3w-audio-amplifier.html">probots.co.in</a></td>
+</tr>
+<tr>
+  <td>5</td>
+  <td><strong>420mAh LiPo Battery</strong> 3.7V (602040P) with protection PCB</td>
+  <td>₹149</td>
+  <td><a href="https://probots.co.in/3-7v-420mah-lipo-battery-602040-rechargeable-lithium-polymer-cell-with-protection-pcb.html">probots.co.in</a></td>
+</tr>
+<tr>
+  <td>6</td>
+  <td><strong>TP4056 USB-C</strong> Li-ion Battery Charger Module</td>
+  <td>₹100</td>
+  <td><a href="https://robu.in/product/smartelex-tp4056-li-ion-battery-charger/">robu.in</a></td>
+</tr>
+<tr>
+  <td>7</td>
+  <td><strong>MT3608</strong> Step-Up Boost Converter (3.7V → 5V)</td>
+  <td>₹79</td>
+  <td><a href="https://probots.co.in/mt3608-step-up-module-boost-voltage.html">probots.co.in</a></td>
+</tr>
+<tr>
+  <td>8</td>
+  <td><strong>Jumper Wires</strong> Male-to-Female 40pin 30cm (for testing)</td>
+  <td>₹57</td>
+  <td><a href="https://robu.in/product/male-to-female-jumper-wires-40-pin-30cm/">robu.in</a></td>
+</tr>
+<tr style="background: #e8f5e9; font-weight: bold;">
+  <td></td>
+  <td>TOTAL (approx.)</td>
+  <td>₹1,970</td>
+  <td></td>
+</tr>
+</table>
+
+<div class="note">
+<strong>Note:</strong> ESP32 S-CAM MB board (₹699) is already purchased. The remaining items to order total approximately <strong>₹1,270</strong>.
+</div>
+
+<p style="text-align:center; color:#888; margin-top:30px; font-size:9pt;">
+Smart Specs Project — Component Reference v1.0 — July 2026
+</p>
+
+</body>
+</html>

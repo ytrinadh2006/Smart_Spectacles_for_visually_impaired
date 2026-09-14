@@ -1,0 +1,34 @@
+# Large binaries & OS images
+*.img
+*.img.xz
+*.iso
+*.zip
+*.tar.gz
+
+# Python virtual environment & cache
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Runtime detections, audio cache, and test logs
+detections/
+audio_cache/
+*.pcm
+*.log
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.claude/
+*.swp
+*~
+
+# Arduino / ESP32 build artifacts
+*.bin
+*.elf
+*.hex
